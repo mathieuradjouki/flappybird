@@ -21,6 +21,19 @@ var gap = 150;
 var constant = pipeNorth.height+gap;
 var bX = 10;
 var bY = 350;
+var gravity = 1;
+
+// When key push
+
+document.addEventListener("keydown",moveUp);
+
+function moveUp(){
+  bY -= 50;
+}
+
+
+// pipe coordinates
+
 //draw images
 
 function draw(){
@@ -29,6 +42,10 @@ function draw(){
   ctx.drawImage(pipeSouth,300,0+constant);
   ctx.drawImage(fg,-20,canvas.height - fg.height,700,fg.height);
   ctx.drawImage(goku,bX,bY,50,50);
+
+  bY += gravity;
+
+  requestAnimationFrame(draw);
 }
 
 draw();
