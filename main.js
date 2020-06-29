@@ -4,25 +4,31 @@ var ctx = canvas.getContext('2d');
 //load images
 
 var goku = new Image();
-var background = new Image();
-var footbackground = new Image();
+var bg = new Image();
+var fg = new Image();
 var pipeNorth = new Image();
 var pipeSouth = new Image();
 
 goku.src ="images/goku.png";
-background.src ="images/background.jpg";
-footbackground.src ="images/footbackground.png";
+bg.src ="images/background.jpg";
+fg.src ="images/footground.png";
 pipeNorth.src ="images/pipeNorth.png";
 pipeSouth.src ="images/pipeSouth.png";
 
+// variables
+
+var gap = 150;
+var constant = pipeNorth.height+gap;
+var bX = 10;
+var bY = 350;
 //draw images
 
 function draw(){
-  ctx.drawImage(background,0,0);
-  ctx.drawImage(goku,10,350,50,50);
-  ctx.drawImage(pipeNorth,100,0);
-  ctx.drawImage(footbackground,0,0);
-
+  ctx.drawImage(bg,0,0);
+  ctx.drawImage(pipeNorth,300,0);
+  ctx.drawImage(pipeSouth,300,0+constant);
+  ctx.drawImage(fg,-20,canvas.height - fg.height,700,fg.height);
+  ctx.drawImage(goku,bX,bY,50,50);
 }
 
 draw();
