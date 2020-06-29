@@ -21,7 +21,7 @@ var gap = 150;
 var constant = pipeNorth.height+gap;
 var bX = 10;
 var bY = 350;
-var gravity = 1;
+var gravity = 1.5;
 
 // When key push
 
@@ -31,15 +31,35 @@ function moveUp(){
   bY -= 50;
 }
 
-
 // pipe coordinates
 
+var pipe = [];
+pipe[0] = {
+  x : canvas.width,
+  y : 0
+};
 //draw images
 
 function draw(){
+
   ctx.drawImage(bg,0,0);
-  ctx.drawImage(pipeNorth,300,0);
-  ctx.drawImage(pipeSouth,300,0+constant);
+
+  for(var i = 0; i < pipe.length; i++){
+
+  ctx.drawImage(pipeNorth,pipe[i].x,pipe[i].y);
+  ctx.drawImage(pipeSouth,pipe[i].x,pipe[i].y+constant);
+  pipe[i].x--;
+  if( pipe[i].x == 200 ){
+      pipe.push({
+        x : canvas.width,
+        y : Math.floor(Math.random()*pipeNorth.height)-pipeNorth.height
+      });
+  }
+//detect colision
+  f( bX + goku.width >= pipe[i].x && bX <= pipe[i].x + pipeNorth.width && (bY <= pipe[i].y + pipeNorth.height || bY+goku.height >= pipe[i].y+constant) || bY + goku.height >= canvas.height - fg.height){
+    location.reload();//reload the page
+  }
+  }
   ctx.drawImage(fg,-20,canvas.height - fg.height,700,fg.height);
   ctx.drawImage(goku,bX,bY,50,50);
 
