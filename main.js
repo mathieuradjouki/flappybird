@@ -10,7 +10,7 @@ var pipeNorth = new Image();
 var pipeSouth = new Image();
 
 goku.src ="images/goku.png";
-bg.src ="images/background.jpg";
+bg.src ="images/fond-flappy-goku.png";
 fg.src ="images/footground.png";
 pipeNorth.src ="images/pipeNorth.png";
 pipeSouth.src ="images/pipeSouth.png";
@@ -34,11 +34,13 @@ scoreSound.src = "sound/sound1.mp3";
 // When key push
 
 document.addEventListener("keydown",moveUp);
+document.addEventListener("click",moveUp);
 
 function moveUp(){
-  bY -= 50;
+  bY -= 45;
   fly.play();
 }
+
 
 // pipe coordinates
 
@@ -81,7 +83,7 @@ function draw(){
 
    ctx.fillStyle = "#000";
    ctx.font = "20px Verdana";
-   ctx.fillText("Score : "+score,10,canvas.height-20);
+   ctx.fillText("Score : "+score,10,640);
 
   requestAnimationFrame(draw);
 }
