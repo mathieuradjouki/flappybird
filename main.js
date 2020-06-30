@@ -26,12 +26,18 @@ var score = 0;
 
 //audio file
 
+var fly = new Audio();
+var scoreSound = new Audio();
+
+fly.src = "sound/sound2.mp3";
+scoreSound.src = "sound/sound1.mp3";
 // When key push
 
 document.addEventListener("keydown",moveUp);
 
 function moveUp(){
   bY -= 50;
+  fly.play();
 }
 
 // pipe coordinates
@@ -65,6 +71,7 @@ function draw(){
   }
   if(pipe[i].x == 1){
     score++;
+    scoreSound.play();
   }
 }
   ctx.drawImage(fg,-20,canvas.height - fg.height,700,fg.height);
