@@ -22,6 +22,9 @@ var constant = pipeNorth.height+gap;
 var bX = 10;
 var bY = 350;
 var gravity = 1.5;
+var score = 0;
+
+//audio file
 
 // When key push
 
@@ -56,15 +59,22 @@ function draw(){
       });
   }
 //detect colision
-  if (bX + goku.width >= pipe[i].x && bX <= pipe[i].x + pipeNorth.width && (bY <= pipe[i].y + pipeNorth.height || bY+goku.height >= pipe[i].y+constant) || bY + goku.heigth >= canvas.height - fg.height ){
+  if (bX + goku.width >= pipe[i].x && bX <= pipe[i].x + pipeNorth.width && (bY <= pipe[i].y + pipeNorth.height || bY+goku.height >= pipe[i].y+constant) || bY + goku.height >= canvas.height - fg.height){
 
-  alert("perdu");
+  location.reload();
+  }
+  if(pipe[i].x == 1){
+    score++;
   }
 }
   ctx.drawImage(fg,-20,canvas.height - fg.height,700,fg.height);
   ctx.drawImage(goku,bX,bY,50,50);
 
   bY += gravity;
+
+   ctx.fillStyle = "#000";
+   ctx.font = "20px Verdana";
+   ctx.fillText("Score : "+score,10,canvas.height-20);
 
   requestAnimationFrame(draw);
 }
