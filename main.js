@@ -56,10 +56,11 @@ function draw(){
       });
   }
 //detect colision
-  f( bX + goku.width >= pipe[i].x && bX <= pipe[i].x + pipeNorth.width && (bY <= pipe[i].y + pipeNorth.height || bY+goku.height >= pipe[i].y+constant) || bY + goku.height >= canvas.height - fg.height){
-    location.reload();//reload the page
+  if (bX + goku.width >= pipe[i].x && bX <= pipe[i].x + pipeNorth.width && (bY <= pipe[i].y + pipeNorth.height || bY+goku.height >= pipe[i].y+constant) || bY + goku.heigth >= canvas.height - fg.height ){
+
+  alert("perdu");
   }
-  }
+}
   ctx.drawImage(fg,-20,canvas.height - fg.height,700,fg.height);
   ctx.drawImage(goku,bX,bY,50,50);
 
