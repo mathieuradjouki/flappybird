@@ -8,12 +8,17 @@ var bg = new Image();
 var fg = new Image();
 var pipeNorth = new Image();
 var pipeSouth = new Image();
+var gameOver = new Image();
+var getReady = new Image();
 
 goku.src ="images/goku.png";
 bg.src ="images/fond-flappy-goku.png";
 fg.src ="images/footground.png";
 pipeNorth.src ="images/pipeNorth.png";
 pipeSouth.src ="images/pipeSouth.png";
+gameOver.src ="images/gameover.png";
+getReady.src= "images/getready.png";
+
 
 // variables
 
@@ -23,6 +28,7 @@ var bX = 10;
 var bY = 350;
 var gravity = 1.5;
 var score = 0;
+
 
 //audio file
 
@@ -37,7 +43,7 @@ document.addEventListener("keydown",moveUp);
 document.addEventListener("click",moveUp);
 
 function moveUp(){
-  bY -= 45;
+  bY -= 40;
   fly.play();
 }
 
@@ -67,11 +73,12 @@ function draw(){
       });
   }
 //detect colision
-  if (bX + goku.width >= pipe[i].x && bX <= pipe[i].x + pipeNorth.width && (bY <= pipe[i].y + pipeNorth.height || bY+goku.height >= pipe[i].y+constant) || bY + goku.height >= canvas.height - fg.height){
+  if (bX + goku.width >= pipe[i].x && bX <= pipe[i].x + pipeNorth.width && (bY <= pipe[i].y + pipeNorth.height || bY+goku.height >=
+     pipe[i].y+constant) || bY + goku.height >= canvas.height - fg.height){
 
   location.reload();
   }
-  if(pipe[i].x == 1){
+  if(pipe[i].x + pipeNorth.width == bX + goku.width){
     score++;
     scoreSound.play();
   }
